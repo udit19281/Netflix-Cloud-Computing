@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const axios = require('axios');
+const { resolveSoa } = require('dns');
 
 // Application servers
 const servers = [
@@ -19,15 +20,22 @@ const handler = async (req, res) =>{
 	// Destructure following properties from request object
 	const { method, url, headers, body } = req;
 
-    if(url=='/0') current=0;
+	// console.log("url is " + url);
+	// console.log("method is " + method);
+	// console.log("headers is " + headers);
+	// console.log("body is " + body);
 
-    else current = 1;
+	//if(url=='/favicon.ico') console.log("Fukcing favicon");
+		
+	console.log("config with url as " + url);
 
+     current=0;
+
+    if(url=='/log_in') current=1;
 	// Select the current server to forward the request
 	const server = servers[current];
 
-	// Update track to select next server
-	//current === (servers.length-1)? current = 0 : current++
+
 
 	try{
 		// Requesting to underlying application server
@@ -43,13 +51,11 @@ const handler = async (req, res) =>{
 	}
 	catch(err){
 		// Send back the error message
-		res.status(500).send("Server error!")	
+		
+
 	}
 }
 
-// Serve favicon.ico image
-app.get('/favicon.ico', (req, res
-	) => res.sendFile('/favicon.ico'));
 
 // When receive new request
 // Pass it to handler method
