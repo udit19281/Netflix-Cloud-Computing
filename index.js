@@ -1,5 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient
+const cors=require('cors')
+const bp = require("body-parser")
 
 const app1 = express();
 const app2 = express();
@@ -40,10 +42,10 @@ const handler = num => (req,res)=>{
 // app1.get('*', handler(0)).post('*', handler(0));
 
 // Start server on PORT 3000
-app1.listen(3000, err =>{
+app1.listen(5000, err =>{
 	err ?
-	console.log("Failed to listen on PORT 3000"):
-	console.log("Application Server listening on PORT 3000");
+	console.log("Failed to listen on PORT 5000"):
+	console.log("Application Server listening on PORT 5000");
 });
 
 // Start server on PORT 3001
@@ -91,4 +93,51 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
       return res.status(500);
   }
   
+})
+
+app2.post('/videos/:name',cors(),async function(req,res,next){
+
+   
+
+    vid=req.params.name;
+   
+
+    dbname = netflix_videos
+
+    db=client.db(dbname)
+
+  
+
+     db.collection('vidoes').find({name:"abcd"}).toArray(function(err,result){
+
+         if(err) console.log(err)
+
+     })
+
+   
+  try {
+      console.log("Inside try")
+     var video = await db.collection('vidoes').find({name:vid}).toArray();
+     
+    //  console.log({ 
+       
+    //     "total_reports":total_reports.length,
+    //     "resolved":resolved.length,
+    //     "rejected":rejected.length,
+    //     "under_investigation":under_investigation.length
+    // })
+
+     res.send( { 
+       
+        "src":video[0]["source"]
+       
+    })
+
+    next();
+
+} catch (err) {
+    return res.status(500);
+}
+    
+
 })

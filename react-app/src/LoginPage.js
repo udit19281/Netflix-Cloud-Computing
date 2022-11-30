@@ -1,6 +1,20 @@
 
 import react, {useState} from "react";
-import Videos from Videos.js;
+import { useNavigate } from "react-router-dom";
+import Videos from "./Videos";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+  
+} from "react-router-dom";
+
+function NavigateVideoSearch(){
+  // 👇️ navigate to /contacts
+  const   navigate = useNavigate();
+  console.log("NavigateVideoSearch")
+  navigate('/videos');
+};
 
 class LoginPage extends react.Component{
 
@@ -16,12 +30,9 @@ class LoginPage extends react.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-     navigate = useNavigate();
+  
 
-   navigateVideoSearch = () => {
-    // 👇️ navigate to /contacts
-    navigate('/videos');
-  };
+   
 
   handleusername(event) {
     this.setState({username: event.target.value});
@@ -34,7 +45,7 @@ class LoginPage extends react.Component{
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:3000/log_in/'+this.state.username+'/'+this.state.password, {
+    fetch('http://localhost:5000/log_in/'+this.state.username+'/'+this.state.password, {
         method: 'POST'  
         
       })
@@ -43,7 +54,7 @@ class LoginPage extends react.Component{
         response.json().then((result)=>{
 
             if(result["exists"]=="true"){
-                user=true
+                this.setState({user:true})
             }
         })
       } )
@@ -80,7 +91,7 @@ class LoginPage extends react.Component{
                             <input  type="submit" value="Submit" />
                           </form>
 
-                          <button onClick={navigateVideoSearch}>Go to Videos after logging in</button>
+                          <button onClick={NavigateVideoSearch}>Go to Videos after logging in</button>
                               
                               
                   </div>
@@ -100,4 +111,4 @@ class LoginPage extends react.Component{
     }
 }
 
-export default Search;
+export default LoginPage;

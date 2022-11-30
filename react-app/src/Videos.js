@@ -3,18 +3,6 @@ import react, {useState} from "react";
 
 
 
-var data=[];
-const getComplaintCards = (arrayOfComplain,self) =>{
-  return arrayOfComplain.map((res,i)=>{
-    return(
-        <><div id={i} className="Card">
-          <p>Crime id: {res.ppcrimeid}</p>
-          <p>Description:{res.ppcrimeaddinfo}</p>
-          </div>
-          </>
-          );
-  });
-};
 class Videos extends react.Component{
 
   constructor(props){
@@ -101,5 +89,4 @@ class Videos extends react.Component{
     }
 }
 
-export default Search;
-Footer
+export default Videos;

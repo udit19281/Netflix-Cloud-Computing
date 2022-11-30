@@ -1,5 +1,7 @@
 import "./App.css";
 import React from "react";
+import LoginPage from   "./LoginPage"
+import Videos from "./Videos"
 
 
 import {
@@ -19,9 +21,9 @@ class App extends React.Component {
     return (
       <Router>
         <Routes>
-          <Route path="/" element = {<LoginPage/>} / >
-          <Route path="/products/*" element = {<ProductsPage/>} /> 
-          <Route path="/cart/*" element = {<CartPage/>} /> 
+          <Route path="/log_in" element = {<LoginPage/>} / >
+          <Route path="/videos" element = {<Videos/>} / >
+           
         </Routes>
       </Router>
       );
