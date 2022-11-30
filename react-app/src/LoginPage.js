@@ -53,8 +53,13 @@ class LoginPage extends react.Component{
        
         response.json().then((result)=>{
 
+          
+
             if(result["exists"]=="true"){
-                this.setState({user:true})
+              
+              const   navigate = useNavigate();
+              
+              navigate('/videos');
             }
         })
       } )
@@ -85,13 +90,13 @@ class LoginPage extends react.Component{
                             </label>
                             <label>
                               Password:
-                              <input type="text" value={this.state.password} onChange={this.handleusername} />
+                              <input type="text" value={this.state.password} onChange={this.handlepassword} />
                             </label>
                             
                             <input  type="submit" value="Submit" />
                           </form>
 
-                          <button onClick={NavigateVideoSearch}>Go to Videos after logging in</button>
+                          
                               
                               
                   </div>

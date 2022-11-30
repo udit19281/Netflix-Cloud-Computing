@@ -59,11 +59,11 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
 
     username = req.params.username;
 
-    //console.log("keyword is "+keyword)
+    console.log("username is "+username)
 
     pword = req.params.password;
 
-   // console.log("year search is "+year)
+    console.log("password search is "+pword)
 
     dbname = "netflix_log_in"
 
@@ -81,6 +81,8 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
         console.log("Inside try login ")
        
        var user = await db.collection('user').find({uname:username,password:pword}).toArray();
+
+       console.log(user.length)
 
 		if(user.length==0) res.send({"exists":"false"})
 
