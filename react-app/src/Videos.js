@@ -1,6 +1,5 @@
-
-import react, {useState} from "react";
-
+import react from "react";
+import Header from "./Components/header";
 
 
 class Videos extends react.Component{
@@ -10,15 +9,25 @@ class Videos extends react.Component{
     
 
     super(props);
-    this.state={name:null,src:null};
+    
+    this.state={name:null,src:null,rcvd:false};
 
     this.handlename = this.handlename.bind(this);
     
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.playVideo = this.playVideo.bind(this);
   }
 
-  handleyname(event) {
-    this.setState({year: event.target.value});
+  playVideo(){
+
+    return <video controls autoPlay loop muted >  <source src={this.state.src} type="video/mp4"></source> </video>
+
+    
+    
+  }
+
+  handlename(event) {
+    this.setState({name: event.target.value});
   }
 
   
@@ -31,7 +40,7 @@ class Videos extends react.Component{
       })
       .then((response) => {
        
-        response.json().then((result)=>{this.setState({ src:result["src"]})})
+        response.json().then((result)=>{this.setState({ src:result["src"],rcvd:true})})
       } )
       .catch(
         error => null // Handle the error response object
@@ -44,19 +53,16 @@ class Videos extends react.Component{
    
     render(){
 
-        let content
-    if(this.state.src!=null) {
-      content = <video   >  <source src={this.state.src} type="video/mp4"/> </video>
+      
+    
+  
      
       
-    } else {
-        <p> Video will stream here </p>
-      
-    }
+   
 
       return(
           <div >
-                  
+                  <Header/>
                   <div >
 
                     <form onSubmit={this.handleSubmit}>
@@ -71,14 +77,13 @@ class Videos extends react.Component{
                               
                   </div>
 
+
+
                   
                 
                 Video:
-                <div >
-                    {content}
-                  
-
-               </div>
+                {this.state.rcvd ? this.playVideo() : <p>Video Unavaialble</p>}
+                
 
                 
                  
