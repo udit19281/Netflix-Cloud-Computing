@@ -6,7 +6,8 @@ const bp = require("body-parser");
 const app1 = express();
 const app2 = express();
 
-const url = "mongodb+srv://udit19281:udit@2211@maincluster.psnttvx.mongodb.net/test";
+const url =
+  "mongodb+srv://udit19281:udit%402211@maincluster.psnttvx.mongodb.net/test";
 
 let dbname;
 
@@ -23,9 +24,7 @@ const handler = (num) => (req, res) => {
 
   console.log(url + " " + num);
 
-  if (url == "/log_in") res.render("../views/log_in.ejs");
-  else if (url == "/temp") res.render("../views/temp.ejs");
-  else res.send("Server is " + num);
+  res.send("Server is " + num);
 };
 
 // Only handle GET and POST requests
@@ -48,16 +47,16 @@ app2.listen(3001, (err) => {
 });
 
 app1.post(
-  "/log_in/:username/:password",
+  "/login/:username/:password",
   cors(),
   async function (req, res, next) {
     username = req.params.username;
 
-    //console.log("keyword is "+keyword)
+    console.log("username is " + username);
 
     pword = req.params.password;
 
-    // console.log("year search is "+year)
+    console.log("password search is " + pword);
 
     dbname = "netflix_log_in";
 
@@ -77,6 +76,8 @@ app1.post(
         .find({ uname: username, password: pword })
         .toArray();
 
+      console.log(user.length);
+
       if (user.length == 0) res.send({ exists: "false" });
       else res.send({ exists: "true" });
     } catch (err) {
@@ -88,18 +89,19 @@ app1.post(
 app2.post("/videos/:name", cors(), async function (req, res, next) {
   vid = req.params.name;
 
-  dbname = netflix_videos;
+  console.log("Name is " + vid);
+  dbname = "netflix_videos";
 
   db = client.db(dbname);
 
-  db.collection("vidoes")
+  db.collection("videos")
     .find({ name: "abcd" })
     .toArray(function (err, result) {
       if (err) console.log(err);
     });
 
   try {
-    console.log("Inside try");
+    console.log("Inside try video");
     var video = await db.collection("vidoes").find({ name: vid }).toArray();
 
     //  console.log({
@@ -111,7 +113,7 @@ app2.post("/videos/:name", cors(), async function (req, res, next) {
     // })
 
     res.send({
-      src: video[0]["source"],
+      src: video[0]["src"],
     });
 
     next();

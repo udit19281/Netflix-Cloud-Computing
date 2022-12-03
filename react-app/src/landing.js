@@ -1,12 +1,15 @@
-import react from "react";
+import {useState} from "react";
 import Header from "./Components/header";
+import MainHeading from "./Components/shared/MainHeading"
+// UI : 
 
 
 function Landing(){
+
     return(
         <div className="App">
                 <Header/>
-                <p>Hello, Welcome tO Netflix</p>
+                <MainHeading text="Welcome to the Netflix"/>
         </div>
     )
 }

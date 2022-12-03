@@ -31,7 +31,7 @@ const handler = async (req, res) =>{
 
      current=0;
 
-    if(url=='/log_in') current=1;
+    if(url=='/login') current=1;
 	// Select the current server to forward the request
 	const server = servers[current];
 
