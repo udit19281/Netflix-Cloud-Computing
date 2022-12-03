@@ -87,6 +87,8 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
 		if(user.length==0) res.send({"exists":"false"})
 
 		else res.send({"exists":"true"})
+
+        
        
       
   
@@ -103,14 +105,14 @@ app2.post('/videos/:name',cors(),async function(req,res,next){
 
     vid=req.params.name;
    
-
-    dbname = netflix_videos
+    console.log("Name is "+vid)
+    dbname = "netflix_videos"
 
     db=client.db(dbname)
 
   
 
-     db.collection('vidoes').find({name:"abcd"}).toArray(function(err,result){
+     db.collection('videos').find({name:"abcd"}).toArray(function(err,result){
 
          if(err) console.log(err)
 
@@ -118,7 +120,7 @@ app2.post('/videos/:name',cors(),async function(req,res,next){
 
    
   try {
-      console.log("Inside try")
+      console.log("Inside try video")
      var video = await db.collection('vidoes').find({name:vid}).toArray();
      
     //  console.log({ 
@@ -129,9 +131,12 @@ app2.post('/videos/:name',cors(),async function(req,res,next){
     //     "under_investigation":under_investigation.length
     // })
 
+
+
      res.send( { 
        
-        "src":video[0]["source"]
+        
+        "src":video[0]["src"]
        
     })
 

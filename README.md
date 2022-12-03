@@ -1,6 +1,6 @@
 TODO:
 
-1. Add database for video. Schema : name:abcd,source:abcd
+1. //Add database for video. Schema : name:abcd,source:abcd DONE
 2. Add replica databases and each server will write to a diff dabatabse
 3. Add synchronised writes for hese databases
 4. If one db fails in dbname.client step,switch to other db
