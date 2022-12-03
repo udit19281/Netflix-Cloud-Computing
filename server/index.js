@@ -47,7 +47,7 @@ app2.listen(3001, (err) => {
 });
 
 app1.post(
-  "/login/:username/:password",
+  "/log_in/:username/:password",
   cors(),
   async function (req, res, next) {
     username = req.params.username;

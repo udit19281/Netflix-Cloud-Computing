@@ -33,7 +33,7 @@ class LoginPage extends react.Component {
 
   handleSubmit(event) {
     fetch(
-      "http://localhost:5000/login/" +
+      "http://localhost:5000/log_in/" +
         this.state.username +
         "/" +
         this.state.password,
