@@ -13,21 +13,24 @@ function Navbar() {
   };
   window.addEventListener("scroll", changeBackground);
 
-  return (
-    <nav className={`${nav ? "nav active" : "nav"} h-full`}>
-      <a href="/" className="logo">
-        Home
-      </a>
-      <label className="menu-icon" for="menu-btn">
-        <span className="nav-icon"></span>
-      </label>
-      <dl className=" menu">
-        <dd>
-          <Link to="/login">Log In</Link>
-        </dd>
-      </dl>
-    </nav>
-  );
+    return(
+        
+        <nav className={`${nav ? "nav active" : "nav"} h-full`}>
+            <a href="/" className='logo'>
+                Home
+            </a>
+            <label className='menu-icon' for='menu-btn'>
+                <span className='nav-icon'></span>
+            </label>
+            <dl className=' menu'>
+                <dd><Link to='/log_in'>Log In</Link></dd>
+                <dd><Link to='/sign_up'>Sign Up</Link></dd>
+                <dd><Link to='/recommendation'>Video Recommendation</Link></dd>
+
+                
+            </dl>
+        </nav>
+    )
 }
 
 export default Navbar;
