@@ -25,7 +25,9 @@ function Navbar(){
             </label>
             <dl className=' menu'>
                 <dd><Link to='/log_in'>Log In</Link></dd>
-                
+                <dd><Link to='/sign_up'>Sign Up</Link></dd>
+                <dd><Link to='/recommendation'>Video Recommendation</Link></dd>
+
                 
             </dl>
         </nav>

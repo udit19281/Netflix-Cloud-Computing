@@ -66,8 +66,16 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
     console.log("password search is "+pword)
 
     dbname = "netflix_log_in"
+    
 
     db=client.db(dbname)
+
+    db.stats(function (err, result) {
+        if(result['collections']==0){  // Database Avaialability
+            dbname="netflix_log_in_2"
+            db=client.db(dbname)
+        }
+     });
 
   
 
@@ -99,6 +107,70 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
   
 })
 
+app1.post('/sign_up/:username/:password',cors(),async function(req,res,next){
+
+    username = req.params.username;
+
+    console.log("username is "+username)
+
+    pword = req.params.password;
+
+    console.log("password search is "+pword)
+
+    dbname = "netflix_log_in"
+    
+
+    db=client.db(dbname)
+
+    db.stats(function (err, result) {
+        if(result['collections']==0){  // Database Avaialability
+            dbname="netflix_log_in_2"
+            db=client.db(dbname)
+        }
+     });
+
+  
+
+     db.collection('user').find({uname:"abcd"}).toArray(function(err,result){
+
+         if(err) console.log(err)
+
+     })
+
+     try {
+        console.log("Inside try login ")
+       
+        db.collection('user').insertOne({uname:username,password:pword})    
+
+        //Synchronised Writes
+
+        if(dbname=="netflix_log_in"){
+
+            console.log("netflix log in 2")
+            dbname="netflix_log_in_2"
+            db=client.db(dbname)
+            db.collection('user').insertOne({uname:username,password:pword})
+        }
+
+        else if(dbname=="netflix_log_in_2"){
+
+            dbname="netflix_log_in"
+            db=client.db(dbname)
+            db.collection('user').insertOne({uname:username,password:pword})
+
+
+        }
+
+           
+        
+      
+  } catch (err) {
+      return res.status(500);
+  }
+  
+})
+
+
 app2.post('/videos/:name',cors(),async function(req,res,next){
 
    
@@ -109,6 +181,13 @@ app2.post('/videos/:name',cors(),async function(req,res,next){
     dbname = "netflix_videos"
 
     db=client.db(dbname)
+
+    db.stats(function (err, result) {
+        if(result['collections']==0){  // Database Avaialability
+            dbname="netflix_videos_2"
+            db=client.db(dbname)
+        }
+     });
 
   
 
@@ -140,7 +219,63 @@ app2.post('/videos/:name',cors(),async function(req,res,next){
        
     })
 
-    next();
+   // next();
+
+} catch (err) {
+    return res.status(500);
+}
+    
+
+})
+app2.post('/recommendation',cors(),async function(req,res,next){
+
+   
+
+
+   
+    
+    dbname = "netflix_videos"
+
+    db=client.db(dbname)
+
+    db.stats(function (err, result) {
+        if(result['collections']==0){  // Database Avaialability
+            dbname="netflix_videos_2"
+            db=client.db(dbname)
+        }
+     });
+
+  
+
+     db.collection('videos').find({name:"abcd"}).toArray(function(err,result){
+
+         if(err) console.log(err)
+
+     })
+
+   
+  try {
+      console.log("Inside try video")
+     var video = await db.collection('vidoes').find().toArray();
+     
+    //  console.log({ 
+       
+    //     "total_reports":total_reports.length,
+    //     "resolved":resolved.length,
+    //     "rejected":rejected.length,
+    //     "under_investigation":under_investigation.length
+    // })
+
+
+
+     res.send( { 
+       
+        
+        "src":video[video.length-1]["src"]
+       
+    })
+
+    //next();
 
 } catch (err) {
     return res.status(500);
