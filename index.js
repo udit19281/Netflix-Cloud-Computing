@@ -107,6 +107,89 @@ app1.post('/log_in/:username/:password',cors(),async function(req,res,next){
   
 })
 
+app1.post('/change_password/:username/:password/:new_password',cors(),async function(req,res,next){
+
+    username = req.params.username;
+
+    console.log("username is "+username)
+
+    pword = req.params.password;
+
+    console.log("password search is "+pword)
+
+    newpword = req.params.new_password;
+    console.log("new password search is "+newpword)
+
+
+    dbname = "netflix_log_in"
+    
+
+    db=client.db(dbname)
+
+    db.stats(function (err, result) {
+        if(result['collections']==0){  // Database Avaialability
+            dbname="netflix_log_in_2"
+            db=client.db(dbname)
+        }
+     });
+
+  
+
+     db.collection('user').find({uname:"abcd"}).toArray(function(err,result){
+
+         if(err) console.log(err)
+
+     })
+
+     try {
+        console.log("Inside try login ")
+       
+       var user = await db.collection('user').find({uname:username,password:pword}).toArray();
+
+       console.log(user.length)
+
+		if(user.length==0) res.send({"changed":"false"})
+
+		var myquery = { uname:username,password:pword };
+        var newvalues = { $set: { password: newpword } };
+        db.collection("user").updateOne(myquery, newvalues);
+
+        res.send({"changed":"true"});
+
+        if(dbname=="netflix_log_in"){
+
+            console.log("netflix log in 2")
+            dbname="netflix_log_in_2"
+            db=client.db(dbname)
+            db.collection("user").updateOne(myquery, newvalues);
+
+        }
+
+        else if(dbname=="netflix_log_in_2"){
+
+            dbname="netflix_log_in"
+            db=client.db(dbname)
+            db.collection("user").updateOne(myquery, newvalues);
+
+
+
+        }
+
+
+            
+
+        
+       
+      
+  
+      
+  } catch (err) {
+      return res.status(500);
+  }
+  
+})
+
+
 app1.post('/sign_up/:username/:password',cors(),async function(req,res,next){
 
     username = req.params.username;

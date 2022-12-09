@@ -1,4 +1,4 @@
-TODO:
+TODO: Add video player
 
 Elasticity:
 

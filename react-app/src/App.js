@@ -5,6 +5,7 @@ import Videos from "./Videos"
 import Landing from "./landing";
 import SignUp from "./SignUp";
 import Recommendation from "./Recommendation";
+import ChangePassword from "./changePassword";
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,8 @@ class App extends React.Component {
           <Route path="/videos" element = {<Videos />} / >
           <Route path="/sign_up" element = {<SignUp />} / >
           <Route path="/recommendation" element = {<Recommendation />} / >
+          <Route path="/change_password" element = {<ChangePassword />} / >
+
         </Routes>
       </Router>
       );

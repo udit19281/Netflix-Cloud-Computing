@@ -27,6 +27,8 @@ function Navbar(){
                 <dd><Link to='/log_in'>Log In</Link></dd>
                 <dd><Link to='/sign_up'>Sign Up</Link></dd>
                 <dd><Link to='/recommendation'>Video Recommendation</Link></dd>
+                <dd><Link to='/change_password'>Change Password</Link></dd>
+                
 
                 
             </dl>

@@ -3,8 +3,8 @@ import react, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Components/header";
 import {Link} from "react-router-dom";
+import Landing from "./landing";
 
-import Videos from "./Videos";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,27 +14,28 @@ import {
 
 
 
-class LoginPage extends react.Component{
+class ChangePassword extends react.Component{
 
   constructor(props){
 
     
 
     super(props);
-    this.state={username:null,password:null,logged_in:false};
+    this.state={username:null,password:null,newpassword:null,changed:false};
 
     this.handleusername = this.handleusername.bind(this);
     this.handlepassword = this.handlepassword.bind(this);
+    this.handlenewpassword = this.handlenewpassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.NavigateVideoSearch = this.NavigateVideoSearch.bind(this);
+    this.NavigateHome = this.NavigateHome.bind(this);
     
   }
 
-   NavigateVideoSearch(){
+   NavigateHome(){
   
-    console.log("NavigateVideoSearch")
-    return <Link to= "/videos">
-        Go to Videos
+    console.log("NavigateHome")
+    return <Link to= "/">
+        Go Home
         </Link>
   }
   
@@ -48,10 +49,15 @@ class LoginPage extends react.Component{
     this.setState({password: event.target.value});
   }
 
+  handlenewpassword(event) {
+    this.setState({newpassword: event.target.value});
+  }
+
+
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:5000/log_in/'+this.state.username+'/'+this.state.password, {
+    fetch('http://localhost:5000/change_password/'+this.state.username+'/'+this.state.password+'/'+this.state.newpassword, {
         method: 'POST'  
         
       })
@@ -61,11 +67,11 @@ class LoginPage extends react.Component{
 
           
 
-            if(result["exists"]=="true"){
+            if(result["changed"]=="true"){
               
               
-              this.setState({logged_in:true});
-              console.log("Logged in");
+              this.setState({changed:true});
+              console.log("password changed");
               
             }
 
@@ -118,6 +124,12 @@ class LoginPage extends react.Component{
           Password:
           <input type="text" value={this.state.password} onChange={this.handlepassword} />
         </label>
+
+        <label>
+          New Password:
+          <input type="text" value={this.state.newpassword} onChange={this.handlenewpassword} />
+        </label>
+       
         
         <input  type="submit" value="Submit" />
       </form>
@@ -133,14 +145,14 @@ class LoginPage extends react.Component{
 
                    
                           
-                  {this.state.logged_in ? this.NavigateVideoSearch() : renderForm}  
+                  {this.state.changed ? this.NavigateHome() : renderForm}  
                               
                   </div>
 
                   
                 
                 {/* <Routes>
-                    <Route path="/videos" element={<Videos />} />
+                <Route path="/" element = {<Landing/>} />
 
                 </Routes>
                  */}
@@ -152,4 +164,4 @@ class LoginPage extends react.Component{
     }
 }
 
-export default LoginPage;
+export default ChangePassword;

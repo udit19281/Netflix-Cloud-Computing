@@ -20,9 +20,15 @@ class Videos extends react.Component{
 
   playVideo(){
 
-    return <video controls autoPlay loop muted >  <source src={this.state.src} type="video/mp4"></source> </video>
+    // return <video  loop autoPlay="" muted ><source src={this.state.src} type="video/mp4"/>Your browser does not support the video tag.</video>
 
-    
+    return <iframe
+    width="560"
+    height="315"
+    src={this.state.src}
+    frameborder="0"
+    allowFullScreen
+  ></iframe>
     
   }
 
