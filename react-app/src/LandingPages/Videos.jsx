@@ -1,5 +1,5 @@
 import react from "react";
-import Header from "./Components/header";
+import Header from "../Components/header";
 
 class Videos extends react.Component {
   constructor(props) {
@@ -14,11 +14,16 @@ class Videos extends react.Component {
   }
 
   playVideo() {
+    // return <video  loop autoPlay="" muted ><source src={this.state.src} type="video/mp4"/>Your browser does not support the video tag.</video>
+
     return (
-      <video controls autoPlay loop muted>
-        {" "}
-        <source src={this.state.src} type="video/mp4"></source>{" "}
-      </video>
+      <iframe
+        width="560"
+        height="315"
+        src={this.state.src}
+        frameborder="0"
+        allowFullScreen
+      ></iframe>
     );
   }
 
@@ -45,7 +50,6 @@ class Videos extends react.Component {
   }
 
   render() {
-    // const renderForm = ();
     return (
       <div>
         <Header />

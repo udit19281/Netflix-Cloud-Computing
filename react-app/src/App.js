@@ -1,10 +1,10 @@
-import "./App.css";
 import React from "react";
-import LoginPage from "./LoginPage";
-import Videos from "./Videos";
-import Landing from "./landing";
-import SignUp from "./SignUp";
-import Recommendation from "./Recommendation";
+import LoginPage from "./LandingPages/LoginPage";
+import Videos from "./LandingPages/Videos";
+import Landing from "./Components/landing";
+import SignUp from "./LandingPages/SignUp";
+import Recommendation from "./LandingPages/Recommendation";
+import ChangePassword from "./LandingPages/ChangePassword";
 
 import {
   BrowserRouter as Router,
@@ -29,6 +29,7 @@ class App extends React.Component {
           <Route path="/videos" element = {<Videos />} / >
           <Route path="/sign_up" element = {<SignUp />} / >
           <Route path="/recommendation" element = {<Recommendation />} / >
+          <Route path="/change_password" element = {<ChangePassword />} / >
         </Routes>
       </Router>
       </div>
