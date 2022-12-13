@@ -349,6 +349,8 @@ app2.post('/recommendation',cors(),async function(req,res,next){
     //     "under_investigation":under_investigation.length
     // })
 
+    console.log(video[video.length-1]["name"])
+
 
 
      res.send( { 
