@@ -57,7 +57,7 @@ class ChangePassword extends react.Component{
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:5000/change_password/'+this.state.username+'/'+this.state.password+'/'+this.state.newpassword, {
+    /*fetch('http://localhost:5000/change_password/'+this.state.username+'/'+this.state.password+'/'+this.state.newpassword, {
         method: 'POST'  
         
       })
@@ -80,9 +80,9 @@ class ChangePassword extends react.Component{
       } )
       .catch(
         error => null // Handle the error response object
-      )
+      )*/
 
-      /*fetch('http://192.168.54.177:5001/shashank',{  //private ip of shashank's laptop
+      fetch('http://192.168.54.177:5001/change_password/'+this.state.username+'/'+this.state.password+'/'+this.state.newpassword,{  //private ip of shashank's laptop
                                                         // found using some en0 command
 
         method: 'POST'   //post api in node's script on Shashank's laptop
@@ -96,14 +96,21 @@ class ChangePassword extends react.Component{
 
           
 
-            console.log(result)
+          if(result["changed"]=="true"){
+              
+              
+            this.setState({changed:true});
+            console.log("password changed");
+            
+          }
+
 
             
         })
       } )
       .catch(
         error => null // Handle the error response object
-      )*/
+      )
 
       
 

@@ -40,7 +40,7 @@ class Videos extends react.Component{
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:3001/videos/'+this.state.name, {
+    fetch('http://192.168.58.151:3001/videos/'+this.state.name, {
         method: 'POST'  
         
       })

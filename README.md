@@ -7,7 +7,7 @@ Features:
  6. Request Video Recommendations
  
 
-
+TODO : 1.UI  2. Db failover
 Scalability:
 With servers performing specialized tasks, both the servers will never be overwhelmed
 with requests. Hence the system can handle a large number of requests and adapt to a

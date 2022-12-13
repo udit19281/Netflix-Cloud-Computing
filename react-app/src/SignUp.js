@@ -42,7 +42,7 @@ class SignUp extends react.Component{
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:5000/sign_up/'+this.state.username+'/'+this.state.password, {
+    fetch('http://192.168.54.177:5001/sign_up/'+this.state.username+'/'+this.state.password, {
         method: 'POST'  
         
       })

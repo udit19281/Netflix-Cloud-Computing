@@ -38,7 +38,7 @@ class Recommendation extends react.Component{
   handleSubmit(event) {
     // alert('A name was submitted: ' + this.state.year);
 
-    fetch('http://localhost:3001/recommendation/', {
+    fetch('http://192.168.58.151:3001/recommendation/', {
         method: 'POST'  
         
       })
