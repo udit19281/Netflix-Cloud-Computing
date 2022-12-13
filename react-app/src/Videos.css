@@ -1,0 +1,9 @@
+.Search{
+    display: flex;
+    position: relative;
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: large;
+    /* background-color:#00b7ff; */
+    flex-direction: column;
+  }

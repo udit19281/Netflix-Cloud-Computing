@@ -1,9 +1,12 @@
-TODO: Add video player
+Features:
+ 1. User log in
+ 2. New user sign up
+ 3. Change Password
+ 4. Search Video
+ 5. Play Video
+ 6. Request Video Recommendations
+ 
 
-Elasticity:
-
-Since both the servers provide specialised tasks.System will always cater to special requests
-of the client in an optimal manner.
 
 Scalability:
 With servers performing specialized tasks, both the servers will never be overwhelmed
@@ -13,5 +16,8 @@ Secondly, for a lot of clients, the master worker is equipped with concurrent ha
 React can handle multiple clients.
 
 Availability:
-Databases of both the servers store the same data at all times .If one of them fails, the
-system will exclusively use the second one. Databases are write synchronised
+Since searching and video streaming is computationally expensive, a dedicate server caters to these tasks. Also, user authentication tasks are less computatinally expensive but more in number, hence another server is dediated for these tasks.
+Databases of both the servers store the same data at all times . Databases are write synchronised
+
+Fail-over/Migration:
+If one of the databases fails, the system will exclusively use the second one.They are write synchronised.

@@ -17,7 +17,7 @@ const client = new MongoClient(url);
 
 
 // Handler method
-const handler = num => (req,res)=>{
+/*const handler = num => (req,res)=>{
 	const { method, url, headers, body } = req;
 	// console.log("url is " + url);
 	// console.log("method is " + method);
@@ -34,7 +34,7 @@ const handler = num => (req,res)=>{
 	else if(url=='/temp') res.render('../views/temp.ejs')
 
 	else res.send("Server is "+num)
-}
+}*/ 
 
 // Only handle GET and POST requests
 // Receive request and pass to handler method

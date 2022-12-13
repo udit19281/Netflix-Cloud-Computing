@@ -1,6 +1,6 @@
 import react from "react";
 import Header from "./Components/header";
-
+import "./Videos.css";
 
 class Videos extends react.Component{
 
@@ -67,9 +67,9 @@ class Videos extends react.Component{
    
 
       return(
-          <div >
+          <div className="App">
                   <Header/>
-                  <div >
+                  <div className="Search">
 
                     <form onSubmit={this.handleSubmit}>
 
